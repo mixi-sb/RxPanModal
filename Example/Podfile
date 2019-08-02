@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RxPanModal_Example' do
+  pod 'RxPanModal', :path => '../'
+
+  target 'RxPanModal_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
