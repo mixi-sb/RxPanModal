@@ -1,15 +1,35 @@
 PODS:
-  - RxPanModal (0.1.0)
+  - PanModal (1.2.4)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxPanModal (0.1):
+    - PanModal (~> 1)
+    - RxCocoa (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
 
 DEPENDENCIES:
   - RxPanModal (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PanModal
+    - RxCocoa
+    - RxRelay
+    - RxSwift
 
 EXTERNAL SOURCES:
   RxPanModal:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RxPanModal: ceacfbb6bda459d2af69e91204e26b63e740b6c8
+  PanModal: 275f6d4d07565ddf4ed16d7be5d9cd275682d80d
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxPanModal: 748125f0dd087ba927c1fa9dc3a662acf76616c9
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
 PODFILE CHECKSUM: a2b837b273856a65711177dd419183d128367dd9
 
