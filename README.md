@@ -1,6 +1,6 @@
 # RxPanModal
 
-[![CI Status](https://img.shields.io/travis/lm2343635/RxPanModal.svg?style=flat)](https://travis-ci.org/lm2343635/RxPanModal)
+[![Build Status](https://app.bitrise.io/app/b831d3c7c2819e78/status.svg?token=BEXIr7I68UsW_H5UHF2wgw)](https://app.bitrise.io/app/b831d3c7c2819e78)
 [![Version](https://img.shields.io/cocoapods/v/RxPanModal.svg?style=flat)](https://cocoapods.org/pods/RxPanModal)
 [![License](https://img.shields.io/cocoapods/l/RxPanModal.svg?style=flat)](https://cocoapods.org/pods/RxPanModal)
 [![Platform](https://img.shields.io/cocoapods/p/RxPanModal.svg?style=flat)](https://cocoapods.org/pods/RxPanModal)
