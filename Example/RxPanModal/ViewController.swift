@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  RxPanModal
 //
-//  Created by lm2343635 on 08/02/2019.
-//  Copyright (c) 2019 lm2343635. All rights reserved.
+//  Created by Meng Li on 08/02/2019.
+//  Copyright (c) 2019 XFLAG. All rights reserved.
 //
 
 import UIKit

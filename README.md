@@ -20,10 +20,6 @@ it, simply add the following line to your Podfile:
 pod 'RxPanModal'
 ```
 
-## Author
-
-lm2343635, lm2343635@126.com
-
 ## License
 
 RxPanModal is available under the MIT license. See the LICENSE file for more info.

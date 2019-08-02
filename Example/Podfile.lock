@@ -1,0 +1,16 @@
+PODS:
+  - RxPanModal (0.1.0)
+
+DEPENDENCIES:
+  - RxPanModal (from `../`)
+
+EXTERNAL SOURCES:
+  RxPanModal:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RxPanModal: ceacfbb6bda459d2af69e91204e26b63e740b6c8
+
+PODFILE CHECKSUM: a2b837b273856a65711177dd419183d128367dd9
+
+COCOAPODS: 1.7.5

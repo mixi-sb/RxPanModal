@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPanModal'
-  s.version          = '0.1.0'
+  s.version          = '0.1'
   s.summary          = 'A short description of RxPanModal.'
 
 # This description is used to generate tags and improve search results.
@@ -21,20 +21,15 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/lm2343635/RxPanModal'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/xflagstudio/RxPanModal'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lm2343635' => 'lm2343635@126.com' }
-  s.source           = { :git => 'https://github.com/lm2343635/RxPanModal.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/xflagstudio/RxPanModal.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'RxPanModal/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'RxPanModal' => ['RxPanModal/Assets/*.png']
-  # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
