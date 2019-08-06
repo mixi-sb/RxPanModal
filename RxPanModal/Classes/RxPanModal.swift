@@ -7,8 +7,12 @@ public struct RxPanModal {
     
     private let item: RxPanModalItem
     
-    var viewController: RxPanModalPresentable {
-        return type(of: item).controllerType.create()
+    var viewController: RxPanModalPresentable? {
+        return type(of: item).controllerType.create(item: item)
+    }
+    
+    public init(_ item: RxPanModalItem) {
+        self.item = item
     }
     
 }
