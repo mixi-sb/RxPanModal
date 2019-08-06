@@ -22,6 +22,8 @@ class ViewController: UIViewController, RxPanModalShowable {
         }.disposed(by: disposeBag)
         return button
     }()
+    
+    private lazy var nameLabel = UILabel()
 
     private let disposeBag = DisposeBag()
     private let viewModel: ViewModel
@@ -40,15 +42,24 @@ class ViewController: UIViewController, RxPanModalShowable {
         
         view.backgroundColor = .white
         view.addSubview(button)
+        view.addSubview(nameLabel)
         createConstraints()
         
         viewModel.panModal.bind(to: rx.panModal).disposed(by: disposeBag)
+        viewModel.name.bind(to: nameLabel.rx.text).disposed(by: disposeBag)
     }
     
     private func createConstraints() {
         button.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(80)
         }
+        
+        nameLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(button.snp.bottom).offset(20)
+        }
+        
     }
 
 }

@@ -13,6 +13,7 @@ struct SelectorPanModalItem: RxPanModalItem {
     static let controllerType: RxPanModalPresentable.Type = SelectorViewController.self
 
     let names: [String]
+    let didNameSelected: (String) -> Void
 }
 
 class SelectorViewController: UIViewController {
@@ -24,10 +25,10 @@ class SelectorViewController: UIViewController {
         return tableView
     }()
     
-    private let names: [String]
+    private let item: SelectorPanModalItem
     
-    required init(names: [String]) {
-        self.names = names
+    required init(item: SelectorPanModalItem) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +57,7 @@ extension SelectorViewController: RxPanModalPresentable {
         guard let item = item as? SelectorPanModalItem else {
             return nil
         }
-        return self.init(names: item.names)
+        return self.init(item: item)
     }
     
     var panScrollable: UIScrollView? {
@@ -68,12 +69,12 @@ extension SelectorViewController: RxPanModalPresentable {
 extension SelectorViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return item.names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = names[indexPath.row]
+        cell.textLabel?.text = item.names[indexPath.row]
         return cell
     }
     
@@ -81,5 +82,10 @@ extension SelectorViewController: UITableViewDataSource {
 }
 
 extension SelectorViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        item.didNameSelected(item.names[indexPath.row])
+        dismiss(animated: true)
+    }
     
 }

@@ -1,4 +1,7 @@
 
+import RxCocoa
+import RxSwift
+
 public protocol RxPanModalItem {
     static var controllerType: RxPanModalPresentable.Type { get }
 }
@@ -13,6 +16,14 @@ public struct RxPanModal {
     
     public init(_ item: RxPanModalItem) {
         self.item = item
+    }
+    
+}
+
+extension ObserverType where Element == RxPanModal {
+    
+    public func onNext(item: RxPanModalItem) {
+        onNext(RxPanModal(item))
     }
     
 }

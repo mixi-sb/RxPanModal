@@ -13,13 +13,21 @@ import RxSwift
 class ViewModel {
     
     private let panModalSubject = PublishSubject<RxPanModal>()
+    private let nameSubject = PublishSubject<String?>()
     
     var panModal: Observable<RxPanModal> {
         return panModalSubject.asObservable()
     }
     
+    var name: Observable<String?> {
+        return nameSubject.asObservable()
+    }
+    
     func openModal() {
-        panModalSubject.onNext(RxPanModal(SelectorPanModalItem(names: ["Alice", "Bob", "Carol"])))
+        panModalSubject.onNext(item: SelectorPanModalItem(names: ["Alice", "Bob", "Carol"]) { [unowned self] in
+            self.nameSubject.onNext($0)
+        })
     }
     
 }
+
