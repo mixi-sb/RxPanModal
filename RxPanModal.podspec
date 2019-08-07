@@ -32,5 +32,5 @@ TODO: Add long description of the pod here.
   s.source_files = 'RxPanModal/Classes/**/*'
   s.dependency 'PanModal', '~> 1'
   s.dependency 'RxCocoa', '~> 5'
-
+  s.dependency 'SnapKit', '~> 5'
 end

@@ -13,7 +13,7 @@ import UIKit
 
 class ViewController: UIViewController, RxPanModalShowable {
     
-    private lazy var button: UIButton = {
+    private lazy var modalButton: UIButton = {
         let button = UIButton()
         button.setTitle("Open Modal", for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -25,6 +25,16 @@ class ViewController: UIViewController, RxPanModalShowable {
     
     private lazy var nameLabel = UILabel()
 
+    private lazy var pickerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Open Picker", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.rx.tap.bind { [unowned self] in
+            self.viewModel.openPicker()
+        }.disposed(by: disposeBag)
+        return button
+    }()
+    
     private let disposeBag = DisposeBag()
     private let viewModel: ViewModel
     
@@ -41,8 +51,9 @@ class ViewController: UIViewController, RxPanModalShowable {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        view.addSubview(button)
+        view.addSubview(modalButton)
         view.addSubview(nameLabel)
+        view.addSubview(pickerButton)
         createConstraints()
         
         viewModel.panModal.bind(to: rx.panModal).disposed(by: disposeBag)
@@ -50,14 +61,20 @@ class ViewController: UIViewController, RxPanModalShowable {
     }
     
     private func createConstraints() {
-        button.snp.makeConstraints {
+        
+        modalButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(80)
         }
         
         nameLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(button.snp.bottom).offset(20)
+            $0.top.equalTo(modalButton.snp.bottom).offset(20)
+        }
+        
+        pickerButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(nameLabel.snp.bottom).offset(20)
         }
         
     }

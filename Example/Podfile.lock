@@ -6,6 +6,7 @@ PODS:
   - RxPanModal (0.1):
     - PanModal (~> 1)
     - RxCocoa (~> 5)
+    - SnapKit (~> 5)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
@@ -30,7 +31,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   PanModal: 275f6d4d07565ddf4ed16d7be5d9cd275682d80d
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxPanModal: 748125f0dd087ba927c1fa9dc3a662acf76616c9
+  RxPanModal: dfb2c7a41863cf63b6c35ebd1db5473c043f61ac
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb

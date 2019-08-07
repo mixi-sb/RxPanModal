@@ -29,5 +29,9 @@ class ViewModel {
         })
     }
     
+    func openPicker() {
+        panModalSubject.onNext(item: RxPanModalPickerItem())
+    }
+    
 }
 
