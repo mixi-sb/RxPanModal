@@ -4,6 +4,8 @@ import PanModal
 
 private enum Const {
     
+    static let height: CGFloat = 291
+    
     enum Drag {
         static let size = CGSize(width: 35, height: 6)
         static let marginTop = 6
@@ -13,19 +15,43 @@ private enum Const {
         static let marginTop = 15
     }
     
+    enum Done {
+        static let marginRight = 16
+    }
+    
 }
 
 public struct RxPanModalPickerItem: RxPanModalItem {
     
     public static let controllerType: RxPanModalPresentable.Type = RxPanModalPickerViewController.self
     
-    public init() {}
+    public typealias DidSelectItem = (Int, CustomStringConvertible) -> Void
+    
+    let title: String
+    let done: String
+    let models: [CustomStringConvertible]
+    let didSelectItemAt: DidSelectItem?
+    let doneAt: DidSelectItem?
+    
+    public init(
+        title: String,
+        done: String,
+        models: [CustomStringConvertible],
+        didSelectItemAt: DidSelectItem? = nil,
+        doneAt: DidSelectItem? = nil
+    ) {
+        self.title = title
+        self.done = done
+        self.models = models
+        self.didSelectItemAt = didSelectItemAt
+        self.doneAt = doneAt
+    }
     
 }
 
 open class RxPanModalPickerViewController: UIViewController {
 
-    let months = ["Jan", "Feb", "Mar", "Apr", "May"]
+
     
     private lazy var dragView: UIView = {
         let view = UIView()
@@ -39,13 +65,13 @@ open class RxPanModalPickerViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 16, weight: .semibold)
-        label.text = "Months"
+        label.text = item.title
         return label
     }()
     
     private lazy var doneButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Finish", for: .normal)
+        button.setTitle(item.done, for: .normal)
         button.setTitleColor(UIColor(red: 0, green: 145.0 / 255.0, blue: 212.0 / 255.0, alpha: 1), for: .normal)
         button.addTarget(self, action: #selector(done), for: .touchUpInside)
         return button
@@ -55,10 +81,14 @@ open class RxPanModalPickerViewController: UIViewController {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
+
         return pickerView
     }()
     
-    required public init() {
+    private let item: RxPanModalPickerItem
+    
+    required public init(item: RxPanModalPickerItem) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -93,7 +123,7 @@ open class RxPanModalPickerViewController: UIViewController {
         
         doneButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.right.equalToSuperview().offset(-16)
+            $0.right.equalToSuperview().offset(-Const.Done.marginRight)
         }
         
         pickerView.snp.makeConstraints {
@@ -104,6 +134,10 @@ open class RxPanModalPickerViewController: UIViewController {
     
     @objc private func done() {
         dismiss(animated: true)
+        let row = pickerView.selectedRow(inComponent: 0)
+        if 0..<item.models.count ~= row {
+            item.doneAt?(row, item.models[row])
+        }
     }
     
 }
@@ -115,11 +149,11 @@ extension RxPanModalPickerViewController: UIPickerViewDataSource {
     }
     
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return months.count
+        return item.models.count
     }
     
     public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: months[row], attributes: [
+        return NSAttributedString(string: item.models[row].description, attributes: [
             .foregroundColor: UIColor.white
         ])
     }
@@ -128,12 +162,22 @@ extension RxPanModalPickerViewController: UIPickerViewDataSource {
 
 extension RxPanModalPickerViewController: UIPickerViewDelegate {
     
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard 0..<item.models.count ~= row else {
+            return
+        }
+        item.didSelectItemAt?(row, item.models[row])
+    }
+    
 }
 
 extension RxPanModalPickerViewController: RxPanModalPresentable {
     
     public static func create(item: RxPanModalItem) -> Self? {
-        return self.init()
+        guard let item = item as? RxPanModalPickerItem else {
+            return nil
+        }
+        return self.init(item: item)
     }
     
     public var panScrollable: UIScrollView? {
@@ -141,7 +185,7 @@ extension RxPanModalPickerViewController: RxPanModalPresentable {
     }
     
     public var longFormHeight: PanModalHeight {
-        return .contentHeightIgnoringSafeArea(291)
+        return .contentHeightIgnoringSafeArea(Const.height)
     }
     
     public var showDragIndicator: Bool {
