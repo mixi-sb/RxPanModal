@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'RxPanModal'
   s.version          = '0.1'
-  s.summary          = 'A short description of RxPanModal.'
+  s.summary          = 'RxSwift reactive extension for PanModal.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,18 +18,16 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanModal, a view controller can be presented as a pan model from the view model directly.
                        DESC
 
   s.homepage         = 'https://github.com/xflagstudio/RxPanModal'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lm2343635' => 'lm2343635@126.com' }
   s.source           = { :git => 'https://github.com/xflagstudio/RxPanModal.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
-
 
   s.subspec 'Core' do |core|
     core.source_files = 'RxPanModal/Classes/Core/**/*'

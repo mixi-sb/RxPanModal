@@ -3,7 +3,7 @@
 //  RxPanModal_Example
 //
 //  Created by Meng Li on 2019/08/06.
-//  Copyright © 2019 CocoaPods. All rights reserved.
+//  Copyright © 2019 XFLAG. All rights reserved.
 //
 
 import RxCocoa
@@ -30,18 +30,6 @@ class ViewModel {
     }
     
     func openPicker() {
-        panModalSubject.onNext(item: RxPanModalPickerItem(
-            title: "Months",
-            done: "Done",
-            models: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"],
-            didSelectItemAt: { index, model in
-                print("select at \(index) " + model.description)
-            },
-            doneAt: { index, model in
-                print("done at \(index) " + model.description)
-            }
-        ))
-        
         panModalSubject.onNextPicker(
             title: "Months",
             done: "Done",
