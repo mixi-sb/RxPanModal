@@ -2,7 +2,7 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'RxPanModal_Example' do
-  pod 'RxPanModal', :path => '../'
+  pod 'RxPanModal/Template', :path => '../'
   pod 'SnapKit'
 
   target 'RxPanModal_Tests' do

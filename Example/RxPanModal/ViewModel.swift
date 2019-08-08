@@ -41,6 +41,18 @@ class ViewModel {
                 print("done at \(index) " + model.description)
             }
         ))
+        
+        panModalSubject.onNextPicker(
+            title: "Months",
+            done: "Done",
+            models: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"],
+            didSelectItemAt: { index, model in
+                print("select at \(index) " + model.description)
+            },
+            doneAt: { index, model in
+                print("done at \(index) " + model.description)
+            }
+        )
     }
     
 }
