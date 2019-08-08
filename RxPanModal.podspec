@@ -36,7 +36,7 @@ RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanM
   end
 
   s.subspec 'Template' do |template|
-    template.source_files = 'RxPanModal/Classes/Template/**/*'
+    template.source_files = 'RxPanModal/Classes/Templates/**/*'
     template.dependency 'RxPanModal/Core', '~> 0'
     template.dependency 'SnapKit', '~> 5'
   end
