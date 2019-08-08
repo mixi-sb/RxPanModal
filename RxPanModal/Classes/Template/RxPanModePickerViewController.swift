@@ -54,6 +54,12 @@ public struct RxPanModalPickerItem: RxPanModalItem {
     public enum Theme {
         case dark
         case light
+        case custom(
+            backgroundColor: UIColor?,
+            doneColor: UIColor?,
+            titleColor: UIColor?,
+            pickerTitleAttributes: [NSAttributedString.Key: Any]
+        )
     }
     
     let theme: Theme
@@ -104,7 +110,7 @@ open class RxPanModalPickerViewController: UIViewController {
         button.setTitle(item.done, for: .normal)
         button.addTarget(self, action: #selector(done), for: .touchUpInside)
         button.setTitleColor(item.theme.doneColor, for: .normal)
-        button.setTitleColor(item.theme.doneColor?.darker(), for: .highlighted)
+        button.setTitleColor(item.theme.doneColor?.lighter(), for: .highlighted)
         return button
     }()
     
@@ -230,11 +236,20 @@ extension RxPanModalPickerItem.Theme {
             return UIColor(hexa: 0x3b3b3bcc)
         case .light:
             return UIColor(hexa: 0xffffffcc)
+        case .custom(let color, _, _, _):
+            return color
         }
     }
     
     var doneColor: UIColor? {
-        return UIColor(hex: 0x0091d4)
+        switch self {
+        case .dark:
+            return UIColor(hex: 0x0091d4)
+        case .light:
+            return UIColor(hex: 0x367bf7)
+        case .custom(_, let color, _, _):
+            return color
+        }
     }
     
     var titleColor: UIColor? {
@@ -243,6 +258,8 @@ extension RxPanModalPickerItem.Theme {
             return .white
         case .light:
             return .darkText
+        case .custom(_, _, let color, _):
+            return color
         }
     }
     
@@ -256,6 +273,8 @@ extension RxPanModalPickerItem.Theme {
             return [
                 .foregroundColor: UIColor.darkText
             ]
+        case .custom(_, _, _, let attributes):
+            return attributes
         }
     }
     
