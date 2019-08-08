@@ -15,6 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		775F765822F90DA200F0E31E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F765722F90DA200F0E31E /* ViewModel.swift */; };
 		775F765A22F9184200F0E31E /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775F765922F9184200F0E31E /* SelectorViewController.swift */; };
+		77DB6E3822FC057100E5C6EC /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77DB6E3722FC057000E5C6EC /* background.jpg */; };
 		FFE8826AA941CD66792210D5 /* Pods_RxPanModal_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ADF8EFA87AE87569DAF3314 /* Pods_RxPanModal_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		6CE6001D8E203892B2A08DF0 /* RxPanModal.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RxPanModal.podspec; path = ../RxPanModal.podspec; sourceTree = "<group>"; };
 		775F765722F90DA200F0E31E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		775F765922F9184200F0E31E /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
+		77DB6E3722FC057000E5C6EC /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		7CC6FE710CDBA60EA53F4916 /* Pods-RxPanModal_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxPanModal_Example.release.xcconfig"; path = "Target Support Files/Pods-RxPanModal_Example/Pods-RxPanModal_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BF1DA3FDBC23D6C1938D44E4 /* Pods-RxPanModal_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxPanModal_Tests.release.xcconfig"; path = "Target Support Files/Pods-RxPanModal_Tests/Pods-RxPanModal_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E463CD87E1FF203965679660 /* Pods_RxPanModal_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxPanModal_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,7 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77DB6E3722FC057000E5C6EC /* background.jpg */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77DB6E3822FC057100E5C6EC /* background.jpg in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

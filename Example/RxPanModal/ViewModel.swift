@@ -31,7 +31,7 @@ class ViewModel {
     
     func openPicker() {
         panModalSubject.onNextPicker(
-            theme: .light,
+            theme: .dark,
             title: "Months",
             done: "Done",
             models: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"],

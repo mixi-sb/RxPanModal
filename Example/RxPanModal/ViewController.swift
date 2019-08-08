@@ -13,10 +13,17 @@ import UIKit
 
 class ViewController: UIViewController, RxPanModalShowable {
     
+    private lazy var backgrounImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "background.jpg")
+        return imageView
+    }()
+    
     private lazy var modalButton: UIButton = {
         let button = UIButton()
         button.setTitle("Open Modal", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.rx.tap.bind { [unowned self] in
             self.viewModel.openModal()
         }.disposed(by: disposeBag)
@@ -28,7 +35,7 @@ class ViewController: UIViewController, RxPanModalShowable {
     private lazy var pickerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Open Picker", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.rx.tap.bind { [unowned self] in
             self.viewModel.openPicker()
         }.disposed(by: disposeBag)
@@ -51,6 +58,7 @@ class ViewController: UIViewController, RxPanModalShowable {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        view.addSubview(backgrounImageView)
         view.addSubview(modalButton)
         view.addSubview(nameLabel)
         view.addSubview(pickerButton)
@@ -61,6 +69,10 @@ class ViewController: UIViewController, RxPanModalShowable {
     }
     
     private func createConstraints() {
+        
+        backgrounImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         modalButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
