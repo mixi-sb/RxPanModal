@@ -51,6 +51,12 @@ public struct RxPanModalPickerItem: RxPanModalItem {
     
     public typealias DidSelectItem = (Int, CustomStringConvertible) -> Void
     
+    public enum Theme {
+        case dark
+        case light
+    }
+    
+    let theme: Theme
     let title: String
     let done: String
     let models: [CustomStringConvertible]
@@ -58,12 +64,14 @@ public struct RxPanModalPickerItem: RxPanModalItem {
     let doneAt: DidSelectItem?
     
     public init(
+        theme: Theme = .dark,
         title: String,
         done: String,
         models: [CustomStringConvertible],
         didSelectItemAt: DidSelectItem? = nil,
         doneAt: DidSelectItem? = nil
     ) {
+        self.theme = theme
         self.title = title
         self.done = done
         self.models = models
@@ -74,18 +82,18 @@ public struct RxPanModalPickerItem: RxPanModalItem {
 }
 
 open class RxPanModalPickerViewController: UIViewController {
-    
+
     private lazy var dragView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 94.0 / 255.0, alpha: 1)
+        view.backgroundColor = UIColor(hex: 0x5e5e5e)
         view.layer.cornerRadius = Const.Drag.size.height / 2
         view.layer.masksToBounds = true
         return view
     }()
     
-    private lazy var titleLabel: UIView = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = item.theme.titleColor
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         label.text = item.title
         return label
@@ -94,8 +102,9 @@ open class RxPanModalPickerViewController: UIViewController {
     private lazy var doneButton: UIButton = {
         let button = UIButton()
         button.setTitle(item.done, for: .normal)
-        button.setTitleColor(UIColor(red: 0, green: 145.0 / 255.0, blue: 212.0 / 255.0, alpha: 1), for: .normal)
         button.addTarget(self, action: #selector(done), for: .touchUpInside)
+        button.setTitleColor(item.theme.doneColor, for: .normal)
+        button.setTitleColor(item.theme.doneColor?.darker(), for: .highlighted)
         return button
     }()
     
@@ -103,7 +112,6 @@ open class RxPanModalPickerViewController: UIViewController {
         let pickerView = UIPickerView()
         pickerView.dataSource = self
         pickerView.delegate = self
-
         return pickerView
     }()
     
@@ -121,7 +129,7 @@ open class RxPanModalPickerViewController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(white: 59.0 / 255.0, alpha: 0.8)
+        view.backgroundColor = item.theme.backgroundColor
         view.addSubview(dragView)
         view.addSubview(titleLabel)
         view.addSubview(doneButton)
@@ -175,9 +183,7 @@ extension RxPanModalPickerViewController: UIPickerViewDataSource {
     }
     
     public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: item.models[row].description, attributes: [
-            .foregroundColor: UIColor.white
-        ])
+        return NSAttributedString(string: item.models[row].description, attributes: item.theme.pickerTitleAttributes)
     }
     
 }
@@ -216,3 +222,41 @@ extension RxPanModalPickerViewController: RxPanModalPresentable {
     
 }
 
+extension RxPanModalPickerItem.Theme {
+    
+    var backgroundColor: UIColor? {
+        switch self {
+        case .dark:
+            return UIColor(hexa: 0x3b3b3bcc)
+        case .light:
+            return UIColor(hexa: 0xffffffcc)
+        }
+    }
+    
+    var doneColor: UIColor? {
+        return UIColor(hex: 0x0091d4)
+    }
+    
+    var titleColor: UIColor? {
+        switch self {
+        case .dark:
+            return .white
+        case .light:
+            return .darkText
+        }
+    }
+    
+    var pickerTitleAttributes: [NSAttributedString.Key: Any] {
+        switch self {
+        case .dark:
+            return [
+                .foregroundColor: UIColor.white
+            ]
+        case .light:
+            return [
+                .foregroundColor: UIColor.darkText
+            ]
+        }
+    }
+    
+}

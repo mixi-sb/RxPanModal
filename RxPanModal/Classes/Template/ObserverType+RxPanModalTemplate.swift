@@ -28,6 +28,7 @@ import RxSwift
 extension ObserverType where Element == RxPanModal {
     
     public func onNextPicker(
+        theme: RxPanModalPickerItem.Theme = .dark,
         title: String,
         done: String,
         models: [CustomStringConvertible],
@@ -35,6 +36,7 @@ extension ObserverType where Element == RxPanModal {
         doneAt: RxPanModalPickerItem.DidSelectItem? = nil
     ) {
         onNext(item: RxPanModalPickerItem(
+            theme: theme,
             title: title,
             done: done,
             models: models,
