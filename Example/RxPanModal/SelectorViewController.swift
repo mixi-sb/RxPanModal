@@ -77,8 +77,7 @@ extension SelectorViewController: UITableViewDataSource {
         cell.textLabel?.text = item.names[indexPath.row]
         return cell
     }
-    
-    
+
 }
 
 extension SelectorViewController: UITableViewDelegate {
