@@ -58,7 +58,9 @@ public struct RxPanModalPickerItem: RxPanModalItem {
             backgroundColor: UIColor?,
             doneColor: UIColor?,
             titleColor: UIColor?,
-            pickerTitleAttributes: [NSAttributedString.Key: Any]
+            pickerTitleAttributes: [NSAttributedString.Key: Any],
+            blurEffect: UIBlurEffect,
+            blurAlpha: CGFloat
         )
     }
     
@@ -91,6 +93,13 @@ public struct RxPanModalPickerItem: RxPanModalItem {
 }
 
 open class RxPanModalPickerViewController: UIViewController {
+    
+    private lazy var blurView: UIVisualEffectView = {
+        let view = UIVisualEffectView()
+        view.effect = item.theme.blurEffect
+        view.alpha = item.theme.blurAlpha
+        return view
+    }()
 
     private lazy var dragView: UIView = {
         let view = UIView()
@@ -139,6 +148,7 @@ open class RxPanModalPickerViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = item.theme.backgroundColor
+        view.addSubview(blurView)
         view.addSubview(dragView)
         view.addSubview(titleLabel)
         view.addSubview(doneButton)
@@ -151,7 +161,11 @@ open class RxPanModalPickerViewController: UIViewController {
     }
     
     private func createConstraints() {
-        
+
+        blurView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
         dragView.snp.makeConstraints {
             $0.size.equalTo(Const.Drag.size)
             $0.centerX.equalToSuperview()
@@ -240,10 +254,10 @@ extension RxPanModalPickerItem.Theme {
     var backgroundColor: UIColor? {
         switch self {
         case .dark:
-            return UIColor(hexa: 0x3b3b3bcc)
+            return .clear
         case .light:
-            return UIColor(hexa: 0xffffffcc)
-        case .custom(let color, _, _, _):
+            return .clear //IColor(hexa: 0xffffff22)
+        case .custom(let color, _, _, _, _, _):
             return color
         }
     }
@@ -254,7 +268,7 @@ extension RxPanModalPickerItem.Theme {
             return UIColor(hex: 0x0091d4)
         case .light:
             return UIColor(hex: 0x367bf7)
-        case .custom(_, let color, _, _):
+        case .custom(_, let color, _, _, _, _):
             return color
         }
     }
@@ -265,7 +279,7 @@ extension RxPanModalPickerItem.Theme {
             return .white
         case .light:
             return .darkText
-        case .custom(_, _, let color, _):
+        case .custom(_, _, let color, _, _, _):
             return color
         }
     }
@@ -280,9 +294,29 @@ extension RxPanModalPickerItem.Theme {
             return [
                 .foregroundColor: UIColor.darkText
             ]
-        case .custom(_, _, _, let attributes):
+        case .custom(_, _, _, let attributes, _, _):
             return attributes
         }
     }
-    
+
+    var blurEffect: UIBlurEffect {
+        switch self {
+        case .dark:
+            return UIBlurEffect(style: .dark)
+        case .light:
+            return UIBlurEffect(style: .extraLight)
+        case .custom(_, _, _, _, let effect, _):
+            return effect
+        }
+    }
+
+    var blurAlpha: CGFloat {
+        switch self {
+        case .dark, .light:
+            return 0.95
+        case .custom(_, _, _, _, _, let alpha):
+            return alpha
+        }
+    }
+
 }
