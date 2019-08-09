@@ -97,6 +97,7 @@ The following templates in prepared.
 
 ```swift
 panModalSubject.onNextPicker(
+    theme: .dark,
     title: "Months",
     done: "Done",
     models: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"],

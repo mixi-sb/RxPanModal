@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPanModal'
-  s.version          = '0.1'
+  s.version          = '0.1.1'
   s.summary          = 'RxSwift reactive extension for PanModal.'
 
 # This description is used to generate tags and improve search results.
