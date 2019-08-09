@@ -54,14 +54,17 @@ public struct RxPanModalPickerItem: RxPanModalItem {
     public enum Theme {
         case dark
         case light
-        case custom(
-            backgroundColor: UIColor?,
-            doneColor: UIColor?,
-            titleColor: UIColor?,
-            pickerTitleAttributes: [NSAttributedString.Key: Any],
-            blurEffect: UIBlurEffect,
-            blurAlpha: CGFloat
-        )
+        case custom(Custom)
+        
+        public struct Custom {
+            var backgroundColor: UIColor?
+            var doneColor: UIColor?
+            var titleColor: UIColor?
+            var pickerSeperatorColor: UIColor?
+            var pickerTitleAttributes: [NSAttributedString.Key: Any]
+            var blurEffect: UIBlurEffect
+            var blurAlpha: CGFloat
+        }
     }
     
     let theme: Theme
@@ -157,6 +160,16 @@ open class RxPanModalPickerViewController: UIViewController {
         
         if 0..<item.models.count ~= item.selectAt {
             pickerView.selectRow(item.selectAt, inComponent: 0, animated: false)
+        }
+
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Update the background color of picker seperator lines.
+        pickerView.subviews.filter { $0.frame.height == 0.5 }.forEach {
+            $0.backgroundColor = item.theme.pickerSeperatorColor
         }
     }
     
@@ -257,8 +270,8 @@ extension RxPanModalPickerItem.Theme {
             return .clear
         case .light:
             return .clear //IColor(hexa: 0xffffff22)
-        case .custom(let color, _, _, _, _, _):
-            return color
+        case .custom(let custom):
+            return custom.backgroundColor
         }
     }
     
@@ -268,8 +281,8 @@ extension RxPanModalPickerItem.Theme {
             return UIColor(hex: 0x0091d4)
         case .light:
             return UIColor(hex: 0x367bf7)
-        case .custom(_, let color, _, _, _, _):
-            return color
+        case .custom(let custom):
+            return custom.doneColor
         }
     }
     
@@ -279,8 +292,19 @@ extension RxPanModalPickerItem.Theme {
             return .white
         case .light:
             return .darkText
-        case .custom(_, _, let color, _, _, _):
-            return color
+        case .custom(let custom):
+            return custom.titleColor
+        }
+    }
+    
+    var pickerSeperatorColor: UIColor? {
+        switch self {
+        case .dark:
+            return UIColor(hex: 0xfcfcfc)
+        case .light:
+            return UIColor(hex: 0xa2a8af)
+        case .custom(let custom):
+            return custom.pickerSeperatorColor
         }
     }
     
@@ -294,8 +318,8 @@ extension RxPanModalPickerItem.Theme {
             return [
                 .foregroundColor: UIColor.darkText
             ]
-        case .custom(_, _, _, let attributes, _, _):
-            return attributes
+        case .custom(let custom):
+            return custom.pickerTitleAttributes
         }
     }
 
@@ -305,8 +329,8 @@ extension RxPanModalPickerItem.Theme {
             return UIBlurEffect(style: .dark)
         case .light:
             return UIBlurEffect(style: .extraLight)
-        case .custom(_, _, _, _, let effect, _):
-            return effect
+        case .custom(let custom):
+            return custom.blurEffect
         }
     }
 
@@ -314,8 +338,8 @@ extension RxPanModalPickerItem.Theme {
         switch self {
         case .dark, .light:
             return 0.95
-        case .custom(_, _, _, _, _, let alpha):
-            return alpha
+        case .custom(let custom):
+            return custom.blurAlpha
         }
     }
 
