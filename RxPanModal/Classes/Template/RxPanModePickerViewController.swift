@@ -193,7 +193,12 @@ open class RxPanModalPickerViewController: UIViewController {
         
         doneButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.right.equalToSuperview().offset(-Const.Done.marginRight)
+            
+            if #available(iOS 11.0, *) {
+                $0.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-Const.Done.marginRight)
+            } else {
+                $0.right.equalToSuperview().offset(-Const.Done.marginRight)
+            }
         }
         
         pickerView.snp.makeConstraints {
