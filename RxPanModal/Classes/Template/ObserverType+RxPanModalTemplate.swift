@@ -32,6 +32,7 @@ extension ObserverType where Element == RxPanModal {
         title: String,
         done: String,
         models: [CustomStringConvertible],
+        selectAt: Int = 0,
         didSelectItemAt: RxPanModalPickerItem.DidSelectItem? = nil,
         doneAt: RxPanModalPickerItem.DidSelectItem? = nil
     ) {
@@ -40,6 +41,7 @@ extension ObserverType where Element == RxPanModal {
             title: title,
             done: done,
             models: models,
+            selectAt: selectAt,
             didSelectItemAt: didSelectItemAt,
             doneAt: doneAt
         ))

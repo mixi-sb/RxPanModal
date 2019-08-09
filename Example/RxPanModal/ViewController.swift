@@ -30,7 +30,11 @@ class ViewController: UIViewController, RxPanModalShowable {
         return button
     }()
     
-    private lazy var nameLabel = UILabel()
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        return label
+    }()
 
     private lazy var pickerButton: UIButton = {
         let button = UIButton()
@@ -66,6 +70,7 @@ class ViewController: UIViewController, RxPanModalShowable {
         
         viewModel.panModal.bind(to: rx.panModal).disposed(by: disposeBag)
         viewModel.name.bind(to: nameLabel.rx.text).disposed(by: disposeBag)
+        viewModel.month.bind(to: pickerButton.rx.title()).disposed(by: disposeBag)
     }
     
     private func createConstraints() {

@@ -66,6 +66,7 @@ public struct RxPanModalPickerItem: RxPanModalItem {
     let title: String
     let done: String
     let models: [CustomStringConvertible]
+    let selectAt: Int
     let didSelectItemAt: DidSelectItem?
     let doneAt: DidSelectItem?
     
@@ -74,6 +75,7 @@ public struct RxPanModalPickerItem: RxPanModalItem {
         title: String,
         done: String,
         models: [CustomStringConvertible],
+        selectAt: Int = 0,
         didSelectItemAt: DidSelectItem? = nil,
         doneAt: DidSelectItem? = nil
     ) {
@@ -81,6 +83,7 @@ public struct RxPanModalPickerItem: RxPanModalItem {
         self.title = title
         self.done = done
         self.models = models
+        self.selectAt = selectAt
         self.didSelectItemAt = didSelectItemAt
         self.doneAt = doneAt
     }
@@ -141,6 +144,10 @@ open class RxPanModalPickerViewController: UIViewController {
         view.addSubview(doneButton)
         view.addSubview(pickerView)
         createConstraints()
+        
+        if 0..<item.models.count ~= item.selectAt {
+            pickerView.selectRow(item.selectAt, inComponent: 0, animated: false)
+        }
     }
     
     private func createConstraints() {

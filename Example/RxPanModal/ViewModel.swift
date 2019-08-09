@@ -12,8 +12,11 @@ import RxSwift
 
 class ViewModel {
     
+    private let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"]
+    
     private let panModalSubject = PublishSubject<RxPanModal>()
     private let nameSubject = PublishSubject<String?>()
+    private let monthRelay = BehaviorRelay<Int>(value: 0)
     
     var panModal: Observable<RxPanModal> {
         return panModalSubject.asObservable()
@@ -21,6 +24,12 @@ class ViewModel {
     
     var name: Observable<String?> {
         return nameSubject.asObservable()
+    }
+    
+    var month: Observable<String?> {
+        return monthRelay.map {
+            "Open Picker: " + self.months[$0]
+        }
     }
     
     func openModal() {
@@ -34,12 +43,13 @@ class ViewModel {
             theme: .dark,
             title: "Months",
             done: "Done",
-            models: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"],
+            models: months,
+            selectAt: monthRelay.value,
             didSelectItemAt: { index, model in
                 print("select at \(index) " + model.description)
             },
-            doneAt: { index, model in
-                print("done at \(index) " + model.description)
+            doneAt: { [unowned self] index, model in
+                self.monthRelay.accept(index)
             }
         )
     }
