@@ -37,6 +37,7 @@ extension RxPanModalShowable where Self: UIViewController {
         guard let viewController = panModal.viewController else {
             return
         }
+        RxPanModalManager.shared.addViewController(viewController)
         presentPanModal(viewController)
     }
     

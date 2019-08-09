@@ -7,6 +7,7 @@
 //
 
 import RxCocoa
+import RxOrientation
 import RxPanModal
 import RxSwift
 
@@ -17,7 +18,15 @@ class ViewModel {
     private let panModalSubject = PublishSubject<RxPanModal>()
     private let nameSubject = PublishSubject<String?>()
     private let monthRelay = BehaviorRelay<Int>(value: 0)
-    
+
+    private let disposeBag = DisposeBag()
+
+    init() {
+        UIDevice.current.rx.isLandscape.subscribe(onNext: { _ in
+            RxPanModal.dismissAll()
+        }).disposed(by: disposeBag)
+    }
+
     var panModal: Observable<RxPanModal> {
         return panModalSubject.asObservable()
     }

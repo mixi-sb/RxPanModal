@@ -4,6 +4,7 @@ platform :ios, '10.0'
 target 'RxPanModal_Example' do
   pod 'RxPanModal/Template', :path => '../'
   pod 'SnapKit'
+  pod 'RxOrientation'
 
   target 'RxPanModal_Tests' do
     inherit! :search_paths

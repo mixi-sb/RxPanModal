@@ -1,8 +1,8 @@
 //
-//  RxPanModal.swift
+//  ObserverType+RxPanModal.swift
 //  RxPanModal
 //
-//  Created by Meng Li on 2019/08/06.
+//  Created by Meng Li on 2019/08/09.
 //  Copyright © 2018 XFLAG. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,24 +23,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public protocol RxPanModalItem {
-    static var controllerType: RxPanModalPresentable.Type { get }
-}
+import RxSwift
 
-public struct RxPanModal {
-    
-    private let item: RxPanModalItem
+extension ObserverType where Element == RxPanModal {
 
-    var viewController: RxPanModalPresentable? {
-        return type(of: item).controllerType.create(item: item)
+    public func onNext(item: RxPanModalItem) {
+        onNext(RxPanModal(item))
     }
 
-    public init(_ item: RxPanModalItem) {
-        self.item = item
-    }
-
-    public static func dismissAll() {
-        RxPanModalManager.shared.dissmissAll()
-    }
-    
 }

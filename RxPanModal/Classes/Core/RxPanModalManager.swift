@@ -1,8 +1,8 @@
 //
-//  RxPanModal.swift
+//  RxPanModalManager.swift
 //  RxPanModal
 //
-//  Created by Meng Li on 2019/08/06.
+//  Created by Meng Li on 2019/08/09.
 //  Copyright © 2018 XFLAG. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,24 +23,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-public protocol RxPanModalItem {
-    static var controllerType: RxPanModalPresentable.Type { get }
+class RxPanModalManager {
+
+    static let shared = RxPanModalManager()
+
+    private var panModalHolders: [RxPanModalHolder]
+
+    private init() {
+        panModalHolders = []
+    }
+
+    func addViewController(_ viewController: RxPanModalPresentable) {
+        panModalHolders.append(.init(viewController: viewController))
+    }
+
+    func dissmissAll() {
+        panModalHolders.compactMap { $0.viewController }.forEach {
+            $0.dismiss(animated: false)
+        }
+        panModalHolders.removeAll()
+    }
+
 }
 
-public struct RxPanModal {
-    
-    private let item: RxPanModalItem
-
-    var viewController: RxPanModalPresentable? {
-        return type(of: item).controllerType.create(item: item)
-    }
-
-    public init(_ item: RxPanModalItem) {
-        self.item = item
-    }
-
-    public static func dismissAll() {
-        RxPanModalManager.shared.dissmissAll()
-    }
-    
+struct RxPanModalHolder {
+    weak var viewController: RxPanModalPresentable?
 }
