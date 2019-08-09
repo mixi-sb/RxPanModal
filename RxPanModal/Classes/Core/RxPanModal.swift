@@ -39,8 +39,8 @@ public struct RxPanModal {
         self.item = item
     }
 
-    public static func dismissAll() {
-        RxPanModalManager.shared.dissmissAll()
+    public static func dismissAll(animated: Bool = false) {
+        RxPanModalManager.shared.dissmissAll(animated: animated)
     }
     
 }

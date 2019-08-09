@@ -37,9 +37,9 @@ class RxPanModalManager {
         panModalHolders.append(.init(viewController: viewController))
     }
 
-    func dissmissAll() {
+    func dissmissAll(animated: Bool) {
         panModalHolders.compactMap { $0.viewController }.forEach {
-            $0.dismiss(animated: false)
+            $0.dismiss(animated: animated)
         }
         panModalHolders.removeAll()
     }
