@@ -172,6 +172,10 @@ open class RxPanModalPickerViewController: UIViewController {
             $0.backgroundColor = item.theme.pickerSeperatorColor
         }
     }
+
+    open override var shouldAutorotate: Bool {
+        return false
+    }
     
     private func createConstraints() {
 
