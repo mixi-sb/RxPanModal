@@ -110,6 +110,10 @@ panModalSubject.onNextPicker(
 )
 ```
 
+### Dissmiss all presented pan modals.
+
+Sometimes, if you want to dismiss all presented pan modals, just invoke `RxPanModal.dismissAll()` from anywhere.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
