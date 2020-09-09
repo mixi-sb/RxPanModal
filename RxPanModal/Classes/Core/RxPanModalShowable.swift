@@ -41,6 +41,22 @@ extension RxPanModalShowable where Self: UIViewController {
         presentPanModal(viewController)
     }
     
+    public func showCustomPanModal(_ panModal: RxPanModal) {
+        guard let viewController = panModal.viewController else {
+            return
+        }
+        RxPanModalManager.shared.addViewController(viewController)
+        presentCustomPanModal(viewController)
+    }
+    
+    private func presentCustomPanModal(_ viewControllerToPresent: PanModalPresentable.LayoutType, sourceView: UIView? = nil, sourceRect: CGRect = .zero) {
+
+        viewControllerToPresent.modalPresentationStyle = .custom
+        viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
+        viewControllerToPresent.transitioningDelegate = PanModalPresentationDelegate.default
+
+        present(viewControllerToPresent, animated: true, completion: nil)
+    }
 }
 
 extension Reactive where Base: UIViewController, Base: RxPanModalShowable {
@@ -51,4 +67,9 @@ extension Reactive where Base: UIViewController, Base: RxPanModalShowable {
         }
     }
     
+    public var customPanModal: Binder<RxPanModal> {
+        Binder(base) { viewController, panModal in
+            viewController.showCustomPanModal(panModal)
+        }
+    }
 }
