@@ -59,7 +59,7 @@ class ViewModel {
     private let panModalSubject = PublishSubject<RxPanModal>()
     
     var panModal: Observable<RxPanModal> {
-        return panModalSubject.asObservable()
+       panModalSubject.asObservable()
     }
 }
 ```
