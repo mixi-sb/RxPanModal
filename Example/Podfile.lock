@@ -1,24 +1,20 @@
 PODS:
   - PanModal (1.2.7)
-  - RxCocoa (5.1.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxOrientation (0.1.4):
-    - RxCocoa (~> 5)
-    - RxSwift (~> 5)
+  - RxCocoa (6.0.0):
+    - RxRelay (= 6.0.0)
+    - RxSwift (= 6.0.0)
   - RxPanModal/Core (0.1.4):
     - PanModal (~> 1)
-    - RxCocoa (~> 5)
+    - RxCocoa (~> 6)
   - RxPanModal/Template (0.1.4):
-    - RxPanModal/Core (~> 0)
+    - RxPanModal/Core (~> 1)
     - SnapKit (~> 5)
-  - RxRelay (5.1.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.1)
+  - RxRelay (6.0.0):
+    - RxSwift (= 6.0.0)
+  - RxSwift (6.0.0)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
-  - RxOrientation
   - RxPanModal/Template (from `../`)
   - SnapKit
 
@@ -26,7 +22,6 @@ SPEC REPOS:
   trunk:
     - PanModal
     - RxCocoa
-    - RxOrientation
     - RxRelay
     - RxSwift
     - SnapKit
@@ -37,13 +32,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxOrientation: 8f5f0210b7e7b0cedd92718ad3c10adf5222491d
-  RxPanModal: 6edaf8630ea433948a857824b35ce1ac40f01003
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
+  RxPanModal: 55fd46fb2a6f12c975916e32d4696444b3a327e2
+  RxRelay: 8d593be109c06ea850df027351beba614b012ffb
+  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 309cb73cb825d30d9cf9e759c2149692237cfa1c
+PODFILE CHECKSUM: 68a26db65b00fe806dcf7a26048a97d81d7b1212
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
