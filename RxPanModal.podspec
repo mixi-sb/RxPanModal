@@ -24,7 +24,7 @@ RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanM
   s.homepage         = 'https://github.com/xflagstudio/RxPanModal'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = 'xflag'
-  s.source           = { :git => 'https://github.com/xflagstudio/RxPanModal.git', :tag => s.version.to_s }
+  s.source           = { :git => 'git@github.com:xflagstudio/RxPanModal.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '12.0'
   s.swift_version = '5.0'
