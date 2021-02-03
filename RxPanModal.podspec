@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPanModal'
-  s.version          = '0.1.5'
+  s.version          = '1.0.0'
   s.summary          = 'RxSwift reactive extension for PanModal.'
 
 # This description is used to generate tags and improve search results.
@@ -26,18 +26,18 @@ RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanM
   s.author           = 'xflag'
   s.source           = { :git => 'git@github.com:xflagstudio/RxPanModal.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.0'
   s.swift_version = '5.0'
 
   s.subspec 'Core' do |core|
     core.source_files = 'RxPanModal/Classes/Core/**/*'
     core.dependency 'PanModal', '~> 1'
-    core.dependency 'RxCocoa', '~> 5'
+    core.dependency 'RxCocoa', '~> 6'
   end
 
   s.subspec 'Template' do |template|
     template.source_files = 'RxPanModal/Classes/Template/**/*'
-    template.dependency 'RxPanModal/Core', '~> 0'
+    template.dependency 'RxPanModal/Core', '~> 1'
     template.dependency 'SnapKit', '~> 5'
   end
 

@@ -7,7 +7,6 @@
 //
 
 import RxCocoa
-import RxOrientation
 import RxPanModal
 import RxSwift
 
@@ -22,9 +21,14 @@ class ViewModel {
     private let disposeBag = DisposeBag()
 
     init() {
-        UIDevice.current.rx.isLandscape.subscribe(onNext: { _ in
-            RxPanModal.dismissAll()
-        }).disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(UIDevice.orientationDidChangeNotification)
+            .map { _ in UIDevice.current.orientation }
+            .map { $0.isLandscape }
+            .distinctUntilChanged()
+            .subscribe(onNext: { _ in
+                RxPanModal.dismissAll()
+            })
+            .disposed(by: disposeBag)
     }
 
     var panModal: Observable<RxPanModal> {
