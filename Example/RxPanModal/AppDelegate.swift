@@ -10,13 +10,11 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    private let window = UIWindow()
+    lazy var window: UIWindow? = UIWindow()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window.rootViewController = ViewController(viewModel: .init())
-        window.makeKeyAndVisible()
+        window?.rootViewController = ViewController(viewModel: .init())
+        window?.makeKeyAndVisible()
         return true
     }
-
 }
