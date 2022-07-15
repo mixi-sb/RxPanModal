@@ -23,8 +23,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import SnapKit
 import PanModal
+import SnapKit
+import UIKit
 
 private enum Const {
     

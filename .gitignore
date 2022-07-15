@@ -38,3 +38,17 @@ Carthage/Build
 
 # idea
 .idea/
+
+
+/.previous-build
+.DS_Store
+*~
+\#*
+.\#*
+.*.sw[nop]
+*.xcscmblueprint
+/default.profraw
+Utilities/Docker/*.tar.gz
+.swiftpm
+Package.resolved
+*.pyc
