@@ -24,6 +24,7 @@
 // THE SOFTWARE.
 
 import PanModal
+import UIKit
 
 public protocol RxPanModalPresentable: UIViewController, PanModalPresentable {
     static func create(item: RxPanModalItem) -> Self?
