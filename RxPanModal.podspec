@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RxPanModal'
-  s.version          = '1.2.0'
+  s.version          = '1.3.0'
   s.summary          = 'RxSwift reactive extension for PanModal.'
 
 # This description is used to generate tags and improve search results.
@@ -21,10 +21,10 @@ Pod::Spec.new do |s|
 RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanModal, a view controller can be presented as a pan model from the view model directly.
                        DESC
 
-  s.homepage         = 'https://github.com/xflagstudio/RxPanModal'
+  s.homepage         = 'https://github.com/mixi-sb/RxPanModal'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = 'xflag'
-  s.source           = { :git => 'git@github.com:xflagstudio/RxPanModal.git', :tag => s.version.to_s }
+  s.author           = 'MIXI'
+  s.source           = { :git => 'git@github.com:mixi-sb/RxPanModal.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '12.0'
   s.swift_version = '5.0'
