@@ -26,7 +26,7 @@ RxPanModal is a RxSwift reactive extension for the library PanModal. With RxPanM
   s.author           = 'MIXI'
   s.source           = { :git => 'git@github.com:mixi-sb/RxPanModal.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '15.0'
   s.swift_version = '5.0'
 
   s.subspec 'Core' do |core|
